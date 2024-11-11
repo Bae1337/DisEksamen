@@ -16,15 +16,6 @@ const openai = new OpenAI({
 
 app.use(cors());
 app.use("/static", express.static("public"));
-app.use((req, res, next) => {
-  console.log("----- HTTP Request -----");
-  console.log(`Method: ${req.method}`); // HTTP Method
-  console.log(`URL: ${req.originalUrl}`); // Requested URL
-  console.log("Headers:", req.headers); // Request Headers
-  console.log(`IP: ${req.ip}`); // IP Address
-  console.log("------------------------");
-  next();
-});
 app.use(cookieParser());
 app.use(express.json());
 app.use(responseTime())
