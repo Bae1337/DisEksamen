@@ -9,22 +9,22 @@ const askJoeRoute = require("./routes/askJoe");
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "./Public")));
+app.use(express.static(path.join(__dirname, "./public")));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "./Public/pages/home.html"));
+  res.sendFile(path.join(__dirname, "./public/pages/home.html"));
 });
 
 app.get("/menu", (req, res) => {
-  res.sendFile(path.join(__dirname, "./Public/pages/menu.html"));
+  res.sendFile(path.join(__dirname, "./public/pages/menu.html"));
 });
 
 app.get("/locations", (req, res) => {
-  res.sendFile(path.join(__dirname, "./Public/pages/locations.html"));
+  res.sendFile(path.join(__dirname, "./public/pages/locations.html"));
 });
 
 app.get("/askJoe", (req, res) => {
-  res.sendFile(path.join(__dirname, "./Public/pages/askJoe.html"));
+  res.sendFile(path.join(__dirname, "./public/pages/askJoe.html"));
 });
 
 app.use("/customer", customerRoute);
