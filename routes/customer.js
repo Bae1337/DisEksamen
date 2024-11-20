@@ -2,6 +2,7 @@ const express = require("express");
 const customerRoutes = express.Router();
 const cookieParser = require("cookie-parser");
 const db = require("../db");
+const bcrypt = require("bcrypt");
 
 customerRoutes.use(cookieParser());
 
@@ -21,16 +22,18 @@ customerRoutes.get("/", (req, res) => {
 
 
 // opret en post request, der tilføjer en bruger i db'en i customer tabellen. 
-customerRoutes.post("/", (req, res) => {
+customerRoutes.post("/createprofile", (req, res) => {
   let { username, password, email } = req.body;
+
+  let cryptedPassword = bcrypt.hashSync(password, 10);
 
   let query = `INSERT INTO customers (username, password, email) VALUES (?, ?, ?)`;
 
-  db.run(query, [username, password, email], (err) => {
+  db.run(query, [username, cryptedPassword, email], (err) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
-    res.send("Bruger oprettet");
+    res.send({ message: "Bruger oprettet" });
   });
 
 });
@@ -73,17 +76,26 @@ customerRoutes.delete("/:username", (req, res) => {
 
 customerRoutes.post("/login", (req, res) => {
   const { username, password } = req.body;
-  const query = `SELECT * FROM customers WHERE username = ? AND password = ?`;
+  const query = `SELECT * FROM customers WHERE username = ?`;
 
-  db.get(query, [username, password], (err, customer) => {
+  db.get(query, [username], (err, customer) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
     if (customer) {
-      res
-        .cookie("userAuth", username, { maxAge: 3600000 })
-        .status(200)
-        .send({ message: "Du er blevet logget ind" });
+      bcrypt.compare(password, customer.password, (err, result) => {
+        if (err) {
+          return res.status(500).json({ error: err.message });
+        }
+        if (result) {
+          res
+            .cookie("userAuth", username, { maxAge: 3600000 })
+            .status(200)
+            .send({ message: "Du er blevet logget ind" });
+        } else {
+          res.status(401).send({ message: "Forkert brugernavn eller adgangskode" });
+        }
+      });
     } else {
       res.status(401).send({ message: "Forkert brugernavn eller adgangskode" });
     }

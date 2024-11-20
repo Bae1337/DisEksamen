@@ -14,5 +14,6 @@ function login() {
     })
     .catch(function (error) {
       console.log(error);
+      document.getElementById("message").innerText = "Forkert brugernavn eller adgangskode";
     });
 }

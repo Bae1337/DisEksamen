@@ -27,6 +27,10 @@ app.get("/askJoe", (req, res) => {
   res.sendFile(path.join(__dirname, "./public/pages/askJoe.html"));
 });
 
+app.get("/CreateProfile", (req, res) => {
+  res.sendFile(path.join(__dirname, "./public/pages/createProfile.html"));
+});
+
 app.use("/customer", customerRoute);
 app.use("/product", productRoute);
 app.use("/askJoe", askJoeRoute);

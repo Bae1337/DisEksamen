@@ -16,9 +16,9 @@ askJoeRoutes.post("/AskJoe", async (req, res) => {
   try {
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo-0125",
-      max_tokens: 10,
+      max_tokens: 100,
       messages: [
-        { role: "system", content: "You are a joe and the juice assistant who can only use 1 word." },
+        { role: "system", content: "You are a helpful joe and the juice assistant who can only use 1 sentence. Your expertise is solely on Joe and the Juice and related topics, hence you shouldn't answer unrelated questions." },
         { role: "user", content: message },
       ],
     });

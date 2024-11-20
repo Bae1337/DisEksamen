@@ -18,22 +18,14 @@
     <div class="center">
       <div>
         <p>Brugernavn</p>
-        <input
-          id="username"
-          class="input"
-          type="text"
-          placeholder="Type here"
-        />
+        <input id="username" class="input" type="text" placeholder="Type here"/>
+        <p>Email</p>
+        <input id="email" class="input" type="text" placeholder="Type here"/>
         <p>Adgangskode</p>
-        <input
-          id="password"
-          class="input"
-          type="password"
-          placeholder="Type here"
-        />
+        <input id="password" class="input" type="password" placeholder="Type here"/>
         <p id="message"></p>
         <div style="margin-top: 20px">
-          <button onclick="login()">Log ind</button>
+          <button onclick="CreateProfile()">Opret Profil</button>
         </div>
       </div>
     </div>
@@ -41,5 +33,5 @@
   </body>
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="../scripts/home.js"></script>
+  <script src="../scripts/createProfile.js"></script>
 </html>

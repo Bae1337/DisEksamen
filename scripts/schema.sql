@@ -1,13 +1,11 @@
-DROP TABLE IF EXISTS customers;
-CREATE TABLE customers ( 
+CREATE TABLE IF NOT EXISTS customers (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT NOT NULL,               
+    username TEXT NOT NULL,                
     email TEXT NOT NULL UNIQUE,           
     password TEXT NOT NULL             
 );
 
-DROP TABLE IF EXISTS products;
-CREATE TABLE products (
+CREATE TABLE IF NOT EXISTS products (
     id INTEGER PRIMARY KEY AUTOINCREMENT, 
     productName TEXT NOT NULL,            
     imgsrc TEXT
