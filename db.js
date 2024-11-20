@@ -14,8 +14,21 @@ const runSQLScript = (filename) => {
 };
 
 db.serialize(() => {
+    // Kør schema.sql for at oprette tabeller
     runSQLScript('scripts/schema.sql');
-    // runSQLScript('scripts/dump.sql');
+
+    // Tjek, om der allerede er data i tabellen 'products'
+    db.get("SELECT COUNT(*) AS count FROM products", (err, row) => {
+        if (err) {
+            console.error("Error checking products table:", err);
+        } else if (row.count === 0) {
+            // Kun kør dump.sql, hvis tabellen er tom
+            console.log("Products table is empty. Running dump.sql...");
+            runSQLScript('scripts/dump.sql');
+        } else {
+            console.log("Products table already has data. Skipping dump.sql.");
+        }
+    });
 });
 
 

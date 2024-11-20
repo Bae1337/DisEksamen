@@ -2,6 +2,16 @@ const locationDom = document.getElementById("location");
 const latlongDom = document.getElementById("latlong");
 const weatherDom = document.getElementById("weather");
 
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(";").shift();
+}
+let username = getCookie("userAuth");
+if (!username) {
+  location.href = "/";
+}
+
 async function getLocation() {
     const dropdown = document.getElementById('locationDropdown');
     const selectedLocation = dropdown.options[dropdown.selectedIndex].text;

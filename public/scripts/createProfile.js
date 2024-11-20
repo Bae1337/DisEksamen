@@ -14,7 +14,7 @@ async function CreateProfile() {
 
         if (response.ok) {
             let data = await response.json();
-            document.getElementById('message').innerText = data.message;
+            document.getElementById('message').innerHTML = data.message + ` klik <a href="/">her</a> for at logge ind`;
         }
 
     } catch (error) {
