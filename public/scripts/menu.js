@@ -77,42 +77,47 @@ async function loadFavorites() {
 
 
 async function displayProducts() {
-  await fetchProducts();  
-  likedProducts = await loadFavorites(); //
+  await fetchProducts(); // Fetch products from the database
+  likedProducts = await loadFavorites(); // Load liked products
+
   const productContainer = document.getElementById("product-list");
 
-  productContainer.innerHTML = ""; 
+  productContainer.innerHTML = ""; // Clear the container
 
   productList.forEach((product, index) => {
     const productItem = document.createElement("div");
     productItem.classList.add("product-item");
 
+    // Create the image element
     const img = document.createElement("img");
-    img.src = imgRoutePrefix + product.imgsrc;  
+    img.src = product.imgsrc; // Directly use the Cloudinary URL from the database
     img.alt = product.productName;
 
+    // Create the heart button
     const heartButton = document.createElement("button");
     heartButton.classList.add("heart-btn");
-    // Unicode for heart symbol
-    heartButton.innerHTML = "&#10084;"; 
+    heartButton.innerHTML = "&#10084;"; // Unicode for heart symbol
 
     if (likedProducts[index]) {
       heartButton.classList.add("liked");
     }
 
-    heartButton.addEventListener("click", () => toggleLike(product.productName, heartButton)); 
+    heartButton.addEventListener("click", () => toggleLike(product.productName, heartButton));
 
-
-
+    // Create the product name element
     const productName = document.createElement("h3");
     productName.innerText = product.productName;
 
+    // Append elements to the product item
     productItem.appendChild(img);
-    productItem.appendChild(heartButton); 
+    productItem.appendChild(heartButton);
     productItem.appendChild(productName);
+
+    // Append the product item to the container
     productContainer.appendChild(productItem);
   });
 }
+
 
 // Function to toggle like status
 async function toggleLike(productName, heartButton) {
