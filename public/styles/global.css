@@ -54,10 +54,9 @@ ul {
   border: 2px solid black;
   border-radius: 10px;
   padding: 10px;
-  margin-left: 45%;
-  margin-right: 45%;
   background-color: #f7c1d9;
   font-weight: bold;
+  width: 100px;
 }
 
 .center input {
@@ -171,4 +170,92 @@ select {
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 
+}
+
+
+/* -------- */
+
+.kurvArea {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.kurv-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.product-item-cart {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-item-cart:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+.product-details span {
+  font-size: 18px;
+  font-weight: bold;
+  color: #303030;
+}
+
+.total-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 15px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #f7c1d9;
+  color: #303030;
+}
+
+.total-container span {
+  font-size: 24px;
+  color: black;
+}
+
+.center button {
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #f7c1d9;
+  font-weight: bold;
+  width: 100px;
+}
+
+.center input {
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  width: calc(100% - 80px);
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 }

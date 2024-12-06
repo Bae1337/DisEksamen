@@ -6,45 +6,13 @@ function getCookie(name) {
   const parts = value.split(`; ${name}=`);
   if (parts.length === 2) return parts.pop().split(";").shift();
 }
+
 let username = getCookie("userAuth");
 if (!username) {
   location.href = "/";
 }
 
 displayProducts()
-
-
-
-const imgRoutePrefix = "../img/"
-
-let productList = [
-  {
-    productName: "Orange Juice",
-    imgsrc: "orange_juice.jpg"
-  },
-  {
-    productName: "Apple Juice",
-    imgsrc: "apple_juice.jpg"
-  },
-  {
-    productName: "Grape Juice",
-    imgsrc: "grapes.jpg"
-  },
-  {
-    productName: "Pineapple Juice",
-    imgsrc: "pineapple_juice.jpg"
-  },
-  {
-    productName: "Espresso",
-    imgsrc: "espresso.jpg"
-  },
-  {
-    productName: "Cappuccino",
-    imgsrc: "cappuccino.jpg"
-  }
-];
-
-let likedProducts = new Array(productList.length).fill(false);
 
 async function fetchProducts() {
   try {
@@ -60,25 +28,8 @@ async function fetchProducts() {
   }
 }
 
-async function loadFavorites() {
-  try {
-    const response = await fetch(`/product/getFavorites/${username}`); 
-    if (!response.ok) {
-      throw new Error('Failed to load favorites');
-    }
-    const favorites = await response.json();
-    return favorites;
-  } catch (error) {
-    console.error("Error:", error);
-    return [];
-  }
-}
-
-
-
 async function displayProducts() {
-  await fetchProducts(); // Fetch products from the database
-  likedProducts = await loadFavorites(); // Load liked products
+  const productList = await fetchProducts(); // Fetch products from the database
 
   const productContainer = document.getElementById("product-list");
 
@@ -93,25 +44,20 @@ async function displayProducts() {
     img.src = product.imgsrc; // Directly use the Cloudinary URL from the database
     img.alt = product.productName;
 
-    // Create the heart button
-    const heartButton = document.createElement("button");
-    heartButton.classList.add("heart-btn");
-    heartButton.innerHTML = "&#10084;"; // Unicode for heart symbol
+    // Create the add-to-cart button
+    const addToCardButton = document.createElement("button");
+    addToCardButton.innerHTML = "Tilføj til kurv";
 
-    if (likedProducts[index]) {
-      heartButton.classList.add("liked");
-    }
-
-    heartButton.addEventListener("click", () => toggleLike(product.productName, heartButton));
+    addToCardButton.addEventListener("click", () => addToCart(product.productName, addToCardButton));
 
     // Create the product name element
-    const productName = document.createElement("h3");
-    productName.innerText = product.productName;
+    const productNameElem = document.createElement("h3");
+    productNameElem.innerText = product.productName;
 
     // Append elements to the product item
     productItem.appendChild(img);
-    productItem.appendChild(heartButton);
-    productItem.appendChild(productName);
+    productItem.appendChild(addToCardButton);
+    productItem.appendChild(productNameElem);
 
     // Append the product item to the container
     productContainer.appendChild(productItem);
@@ -119,32 +65,33 @@ async function displayProducts() {
 }
 
 
-// Function to toggle like status
-async function toggleLike(productName, heartButton) {
+async function addToCart(productName, addToCardButton) {
   try {
-    const response = await fetch('/product/toggleFavorite', {
+    const response = await fetch('/product/getProduct/productName', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ username, productName }) 
+      body: JSON.stringify({
+        productName: productName
+      })
     });
 
     if (!response.ok) {
-      throw new Error('Failed to toggle favorite');
+      throw new Error('Failed to add product to cart');
     }
 
     const result = await response.json();
 
-    if (result.favorites.includes(productName)) {
-      heartButton.classList.add("liked");
-    } else {
-      heartButton.classList.remove("liked");
-    }
+    // Gem resultatet i localStorage
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push(result);
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert(`${productName} er blevet tilføjet til kurven`);
 
   } catch (error) {
     console.error("Error:", error);
   }
 }
-
 

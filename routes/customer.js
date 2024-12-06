@@ -3,8 +3,11 @@ const customerRoutes = express.Router();
 const cookieParser = require("cookie-parser");
 const db = require("../db");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 customerRoutes.use(cookieParser());
+
+
 
 // Opret en get request til customers, der hiver alt ud fra SQL db'en igennem customer tabellen:
 
@@ -23,20 +26,36 @@ customerRoutes.get("/", (req, res) => {
 
 // opret en post request, der tilføjer en bruger i db'en i customer tabellen. 
 customerRoutes.post("/createprofile", (req, res) => {
-  let { username, password, email } = req.body;
+  const { username, password, email } = req.body;
 
-  let cryptedPassword = bcrypt.hashSync(password, 10);
+  // Krypter password
+  const cryptedPassword = bcrypt.hashSync(password, 10);
 
-  let query = `INSERT INTO customers (username, password, email) VALUES (?, ?, ?)`;
+  // Først tjek om brugernavn eller email allerede findes
+  const checkQuery = `SELECT * FROM customers WHERE username = ? OR email = ?`;
 
-  db.run(query, [username, cryptedPassword, email], (err) => {
+  db.get(checkQuery, [username, email], (err, row) => {
     if (err) {
-      return res.status(500).json({ error: err.message });
+      return res.status(500).json({ error: "Databasefejl. Prøv igen senere." });
     }
-    res.send({ message: "Bruger oprettet" });
-  });
 
+    if (row) {
+      // Hvis brugernavn eller email allerede findes
+      return res.status(400).json({ error: "Brugernavn eller email er allerede i brug." });
+    }
+
+    // Hvis brugernavn og email ikke findes, indsæt i databasen
+    const insertQuery = `INSERT INTO customers (username, password, email) VALUES (?, ?, ?)`;
+
+    db.run(insertQuery, [username, cryptedPassword, email], (err) => {
+      if (err) {
+        return res.status(500).json({ error: "Kunne ikke oprette bruger. Prøv igen senere." });
+      }
+      res.status(201).json({ message: "Bruger oprettet" });
+    });
+  });
 });
+
 
 
 // Opret PUT request til at opdatere en eksisterende bruger i customer-tabellen:
