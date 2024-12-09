@@ -121,26 +121,4 @@ customerRoutes.post("/login", (req, res) => {
   });
 });
 
-// Protected route
-
-customerRoutes.get("/protected", (req, res) => {
-  const authCookie = req.cookies.userAuth;
-
-  if (!authCookie) {
-    return res.status(401).send("Ingen authentication cookie.");
-  }
-
-  const query = `SELECT * FROM customers WHERE username = ?`;
-
-  db.get(query, authCookie, (err, customer) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
-    if (!customer) {
-      return res.status(401).send("Ugyldig cookie.");
-    }
-    res.send("Hej.");
-  });
-});
-
 module.exports = customerRoutes;

@@ -8,6 +8,8 @@ CREATE TABLE IF NOT EXISTS customers (
 CREATE TABLE IF NOT EXISTS products (
     id INTEGER PRIMARY KEY AUTOINCREMENT, 
     price INTEGER NOT NULL,
+    type TEXT NOT NULL,
     productName TEXT NOT NULL,            
     imgsrc TEXT
 );
+

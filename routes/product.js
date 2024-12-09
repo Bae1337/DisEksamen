@@ -10,8 +10,6 @@ dotenv.config();
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 
-let userFavorites = {};
-
 function authenticateUser(req, res, next) {
     const authCookie = req.cookies.userAuth;
   
@@ -28,7 +26,6 @@ function authenticateUser(req, res, next) {
             return res.status(401).send("Ugyldig cookie.");
         }
 
-        console.log("User Authenticated");
         next();
     });
 }
@@ -36,7 +33,7 @@ function authenticateUser(req, res, next) {
 // Get all products
 productRoutes.get('/getProducts', authenticateUser, async (req, res) => {
     try {
-        db.all("SELECT productName, imgsrc FROM products", [], (err, rows) => {
+        db.all("SELECT productName, imgsrc, price, type FROM products", [], (err, rows) => {
             if (err) {
                 return res.status(500).json({ message: "Error fetching products" });
             }
@@ -45,31 +42,6 @@ productRoutes.get('/getProducts', authenticateUser, async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: "Error fetching products" });
     }
-});
-
-productRoutes.get('/getFavorites/:userName', (req, res) => {
-    const userName = req.params.userName;
-    const favorites = userFavorites[userName] || [];
-
-    res.status(200).json(favorites);
-});
-
-productRoutes.post('/toggleFavorite', authenticateUser, (req, res) => {
-    const { username, productName } = req.body;
-    
-    if (!userFavorites[username]) {
-        userFavorites[username] = [];
-    }
-
-    const favoriteIndex = userFavorites[username].indexOf(productName);
-    
-    if (favoriteIndex > -1) {
-        userFavorites[username].splice(favoriteIndex, 1); 
-    } else {
-        userFavorites[username].push(productName); 
-    }
-
-    res.status(200).json({ favorites: userFavorites[username] });
 });
 
 productRoutes.post('/getProduct/productName', authenticateUser, (req, res) => {
@@ -85,7 +57,7 @@ productRoutes.post('/getProduct/productName', authenticateUser, (req, res) => {
 
 const client = require("twilio")(accountSid, authToken);
 
-productRoutes.post("/checkUd", async (req, res) => {
+productRoutes.post('/checkUd', authenticateUser, async (req, res) => {
     const phoneNumber = req.body.phone;
     try {
       const message = await client.messages.create({

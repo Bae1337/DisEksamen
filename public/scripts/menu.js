@@ -32,8 +32,10 @@ async function displayProducts() {
   const productList = await fetchProducts(); // Fetch products from the database
 
   const productContainer = document.getElementById("product-list");
+  const productContainerSandwich = document.getElementById("product-list-sandwich");
 
   productContainer.innerHTML = ""; // Clear the container
+  productContainerSandwich.innerHTML = ""; // Clear the container
 
   productList.forEach((product, index) => {
     const productItem = document.createElement("div");
@@ -54,13 +56,22 @@ async function displayProducts() {
     const productNameElem = document.createElement("h3");
     productNameElem.innerText = product.productName;
 
+    // Create the product name element
+    const productPriceElem = document.createElement("h4");
+    productPriceElem.innerText = product.price + " kr";
+
     // Append elements to the product item
     productItem.appendChild(img);
     productItem.appendChild(addToCardButton);
     productItem.appendChild(productNameElem);
+    productItem.appendChild(productPriceElem);
 
     // Append the product item to the container
+    if (product.type === "drink") {
     productContainer.appendChild(productItem);
+    } else if (product.type === "sandwich") {
+    productContainerSandwich.appendChild(productItem);
+    }
   });
 }
 

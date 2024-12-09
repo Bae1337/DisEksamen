@@ -1,5 +1,5 @@
 body {
-  margin: 0px;
+    margin: 0px;
 }
 
 ul {
@@ -10,252 +10,401 @@ ul {
     overflow: hidden;
     background-color: #f7c1d9;
     font-size: 2em;
-  }
-  
-  li {
+}
+
+li {
     float: left;
-  } 
-  
-  li a {
+}
+
+li a {
     display: block;
     color: rgb(41, 41, 41);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-  }
-  li img{
+}
+
+li img {
     display: block;
     width: 65px;
-  }
-  
-.active{
+}
+
+.active {
     background-color: #f09bc1;
     font-weight: bolder;
 }
 
-  li a:hover {
+li a:hover {
     background-color: #f088b7;
     font-weight: bolder;
 }
 
-/* .container {
-  margin: auto;
-} */
+/* logind */
 
-.center {
-  padding-top: 50px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
+.centertekst {
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 50px auto;
 }
 
-.center button {
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 10px;
-  background-color: #f7c1d9;
-  font-weight: bold;
-  width: 100px;
+.centertekst p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
 }
 
-.center input {
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 10px;
-  margin-left: 45%;
-  margin-right: 45%;
-  margin-top: 20px;
-  margin-bottom: 20px;
+.centertekst input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    width: 100%;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
+
+.centertekst input:focus {
+    outline: none;
+    border-color: #f088b7;
+    box-shadow: 0 0 5px rgba(240, 136, 183, 0.5);
+}
+
+.centertekst a {
+    font-size: 0.9rem;
+    color: #6a1b9a;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.centertekst a:hover {
+    text-decoration: underline;
+}
+
+.centertekst button {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    background-color: #f7c1d9;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.centertekst button:hover {
+    background-color: #f088b7;
+    transform: translateY(-2px);
+}
+
+.centertekst #message {
+    font-size: 0.9rem;
+    color: #d9534f;
+    margin-top: 10px;
+}
+
 
 select {
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 10px;
-  margin-left: 45%;
-  margin-right: 45%;
-  margin-bottom: 20px;
-  font-weight: bold;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    margin-left: 45%;
+    margin-right: 45%;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
 
+/* produkter */
+
+
+/* Produkter container */
+.produkter {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 1200px;
+    /* Central container bredde */
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.produkter h2 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
 
 .product-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    /* Tillader produkterne at brydes til næste række */
+    gap: 20px;
+    justify-content: center;
+    /* Centrerer produktbokse */
+    margin-top: 10px;
 }
 
 .product-item {
-  position: relative;
-  border: 1px solid #ddd;
-  border-radius: 15px;
-  padding: 15px;
-  width: 220px;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    /* Ensartet bredde for produktbokse */
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .product-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 .product-item img {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 10px;
+    width: 100%;
+    /* Fyld hele bredden af containeren */
+    height: 200px;
+    /* Ens højde for alle billeder */
+    object-fit: cover;
+    /* Sikrer, at billedet beskæres jævnt og proportioner bevares */
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
 .product-item h3 {
-  margin-top: 10px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #303030;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #303030;
+    margin-bottom: 5px;
 }
+
+.productArea h4 {
+    font-size: 1.5rem;
+    color: #555;
+    margin-bottom: 10px;
+    text-align: center;
+    /* Centrerer teksten */
+    border-bottom: 2px solid #f7c1d9;
+    /* Adskiller med en linje */
+    padding-bottom: 5px;
+    width: 100%;
+    /* Sørg for, at overskriften fylder hele bredden af containeren */
+}
+
+.product-item button {
+    padding: 10px 15px;
+    background-color: #f7c1d9;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.product-item button:hover {
+    background-color: #f088b7;
+}
+
 
 /*spørg start*/
 
 #mainBox {
-  width: 50%;
-  margin: 50px auto;
-  padding: 20px;
-  background: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  font-family: 'Arial', sans-serif;
+    width: 50%;
+    margin: 50px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: 'Arial', sans-serif;
 }
 
 
 #mainBox h1 {
-  color: #333;
-  font-size: 2rem;
-  margin-bottom: 20px;
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 20px;
 }
 
 
 #mainBox img {
-  max-width: 150px;
-  margin-bottom: 20px;
+    max-width: 150px;
+    margin-bottom: 20px;
 }
 
 
 #spørgInput {
-  width: 80%;
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  outline: none;
-  margin-bottom: 20px;
-  transition: border-color 0.3s ease;
+    width: 80%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    margin-bottom: 20px;
+    transition: border-color 0.3s ease;
 }
 
 #spørgInput:focus {
-  border-color: #007BFF;
+    border-color: #007BFF;
 }
 
 
 #mainBox button {
-  padding: 10px 20px;
-  background-color: #007BFF;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 
+    padding: 10px 20px;
+    background-color: #f7c1d9;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color
 }
 
+#mainBox button:hover {
+    background-color: #f088b7;
+}
 
 /* -------- */
 
 .kurvArea {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.kurvArea h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .kurv-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
 }
 
 .product-item-cart {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  background-color: #f9f9f9;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .product-item-cart:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .product-details {
-  display: flex;
-  flex-direction: column;
-  margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
 }
 
 .product-details span {
-  font-size: 18px;
-  font-weight: bold;
-  color: #303030;
+    font-size: 1.2rem;
+    /* Gør teksten større */
+    font-weight: bold;
+    /* Fremhæv teksten */
+    color: #333;
+    /* Beholder en mørk farve for kontrast */
+    line-height: 1.5;
+    /* Tilføj luft mellem linjer */
+}
+
+.product-details span:first-child {
+    font-size: 1.4rem;
+    /* Gør produktnavnet endnu større */
+    color: #000;
+    /* Gør produktnavnet mørkere */
+}
+
+
+.product-item-cart button {
+    padding: 8px 15px;
+    background-color: #f7c1d9;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.product-item-cart button:hover {
+    background-color: #f088b7;
+    transform: translateY(-2px);
 }
 
 .total-container {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  padding: 15px;
-  border: 2px solid #ddd;
-  border-radius: 10px;
-  text-align: center;
-  font-size: 18px;
-  font-weight: bold;
-  background-color: #f7c1d9;
-  color: #303030;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background-color: #f7c1d9;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
 }
 
 .total-container span {
-  font-size: 24px;
-  color: black;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
 }
 
-.center button {
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 10px;
-  background-color: #f7c1d9;
-  font-weight: bold;
-  width: 100px;
+.kurvArea input[type="number"] {
+    width: calc(70% - 10px);
+    padding: 10px;
+    margin-right: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
 }
 
-.center input {
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 10px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  text-align: center;
-  width: calc(100% - 80px);
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
+.kurvArea button {
+    padding: 10px 20px;
+    background-color: #f7c1d9;
+    border: 1px solid #333;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.kurvArea button:hover {
+    background-color: #f088b7;
+    transform: translateY(-2px);
 }

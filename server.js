@@ -20,10 +20,6 @@ app.get("/menu", (req, res) => {
   res.sendFile(path.join(__dirname, "./public/pages/menu.html"));
 });
 
-app.get("/locations", (req, res) => {
-  res.sendFile(path.join(__dirname, "./public/pages/locations.html"));
-});
-
 app.get("/askJoe", (req, res) => {
   res.sendFile(path.join(__dirname, "./public/pages/askJoe.html"));
 });

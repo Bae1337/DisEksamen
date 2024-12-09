@@ -1,3 +1,15 @@
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
+}
+  
+  let username = getCookie("userAuth");
+  if (!username) {
+    location.href = "/";
+}
+
+
 visKurv();
 
 function visKurv() {
@@ -59,6 +71,7 @@ async function checkUd() {
         if (response.ok) {
             alert('Tak for din bestilling');
             localStorage.removeItem('cart');
+            telefonnummer.value = '';
             visKurv();
         } else {
             alert('Der skete en fejl');
