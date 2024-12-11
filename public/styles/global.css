@@ -1,6 +1,40 @@
-body {
-    margin: 0px;
+@keyframes subtleMove {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 100% 100%;
+    }
 }
+
+body {
+    background: linear-gradient(45deg, #f7c1d9, #ffffff, #f088b7);
+    background-size: 300% 300%;
+    animation: subtleMove 120s infinite;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+html,
+body {
+    height: auto;
+    min-height: 100vh;
+    /* Fylder kun skærmen */
+}
+
+
+
+.footer,
+.extra-boks {
+    display: none;
+}
+
+#kurvIcon {
+    width: 40px;
+}
+
 
 ul {
     font-family: Calibri;
@@ -108,7 +142,7 @@ li a:hover {
 
 .centertekst #message {
     font-size: 0.9rem;
-    color: #d9534f;
+    color: black;
     margin-top: 10px;
 }
 

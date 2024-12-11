@@ -31,7 +31,7 @@ function authenticateUser(req, res, next) {
 }
 
 // Get all products
-productRoutes.get('/getProducts', authenticateUser, async (req, res) => {
+productRoutes.get('/getProducts', async (req, res) => {
     try {
         db.all("SELECT productName, imgsrc, price, type FROM products", [], (err, rows) => {
             if (err) {
@@ -61,7 +61,7 @@ productRoutes.post('/checkUd', authenticateUser, async (req, res) => {
     const phoneNumber = req.body.phone;
     try {
       const message = await client.messages.create({
-        body: "Tak for din bestilling. Din ordre er klar til afhentning om 10 minutter. Foretag venligst betaling i butikken. \n\nJOE & THE JUICE",
+        body: "Tak for din bestilling. Din ordre er klar til afhentning om 5 minutter. Foretag venligst betaling i butikken. \n\nJOE & THE JUICE",
         from: "+14055462497",
         to: "+45" + phoneNumber,
       });
